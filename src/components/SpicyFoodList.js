@@ -5,41 +5,34 @@ function SpicyFoodList() {
   const [foods, setFoods] = useState(spicyFoods);
   const [filterBy, setFilterBy] = useState("All");
 
+  // Event handlers
   function handleAddFood() {
     const newFood = getNewRandomSpicyFood();
     const newFoodArray = [...foods, newFood];
-    setFoods(newFoodArray)
+    setFoods(newFoodArray);
   }
 
-  function handleLiClick(id){
-
-    const newFoodArray = foods.map((food) =>{
-      if(food.id === id){
-        return {
-          ...food,
-          heatLevel: food.heatLevel + 1
-        }        
-      }else{
-        return food
-      }
-    })
-    setFoods(newFoodArray)
+  function handleLiClick(id) {
+    const newFoodArray = foods.map((food) => {
+      return food.id === id
+        ? { ...food, heatLevel: food.heatLevel + 1 }
+        : food;
+    });
+    setFoods(newFoodArray);
   }
 
-  function handleFilterChange(event){
+  function handleFilterChange(event) {
     setFilterBy(event.target.value);
   }
 
+  // Filtered foods to display
   const foodsToDisplay = foods.filter((food) => {
-    if(filterBy === "All"){
-      return true;
-    }else{
-      return food.cuisine === filterBy;
-    }
-  })
+    return filterBy === "All" ? true : food.cuisine === filterBy;
+  });
 
+  // Food list
   const foodList = foodsToDisplay.map((food) => (
-    <li key={food.id} onClick={()=> handleLiClick(food.id)}>
+    <li key={food.id} onClick={() => handleLiClick(food.id)}>
       {food.name} | Heat: {food.heatLevel} | Cuisine: {food.cuisine}
     </li>
   ));
@@ -49,7 +42,7 @@ function SpicyFoodList() {
       <button onClick={handleAddFood}>Add New Food</button>
       <ul>{foodList}</ul>
 
-      <select name="filter" onClick={handleFilterChange}>
+      <select name="filter" onChange={handleFilterChange}>
         <option value="All">All</option>
         <option value="American">American</option>
         <option value="Sichuan">Sichuan</option>
@@ -57,8 +50,8 @@ function SpicyFoodList() {
         <option value="Thai">Thai</option>
       </select>
     </div>
-
   );
 }
 
 export default SpicyFoodList;
+
