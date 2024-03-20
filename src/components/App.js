@@ -1,14 +1,19 @@
 import React from "react";
 import SpicyFoodList from "./SpicyFoodList";
 
-function App() {
+// App component
+const App = () => {
   return (
     <div>
-      <h1>My Spicy Food Adventure</h1>
-      <SpicyFoodList />
+      <header>
+        <h1>My Spicy Food Adventure</h1>
+      </header>
+      <main>
+        <SpicyFoodList />
+      </main>
     </div>
   );
-}
+};
 
 export default App;
 

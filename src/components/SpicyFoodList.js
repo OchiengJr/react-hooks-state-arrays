@@ -1,37 +1,35 @@
 import React, { useState } from "react";
 import { spicyFoods, getNewRandomSpicyFood } from "../data";
 
+// SpicyFoodList component
 function SpicyFoodList() {
   const [foods, setFoods] = useState(spicyFoods);
   const [filterBy, setFilterBy] = useState("All");
 
   // Event handlers
-  function handleAddFood() {
+  const handleAddFood = () => {
     const newFood = getNewRandomSpicyFood();
-    const newFoodArray = [...foods, newFood];
-    setFoods(newFoodArray);
-  }
+    setFoods(prevFoods => [...prevFoods, newFood]);
+  };
 
-  function handleLiClick(id) {
-    const newFoodArray = foods.map((food) => {
-      return food.id === id
-        ? { ...food, heatLevel: food.heatLevel + 1 }
-        : food;
-    });
+  const handleLiClick = (id) => {
+    const newFoodArray = foods.map((food) =>
+      food.id === id ? { ...food, heatLevel: food.heatLevel + 1 } : food
+    );
     setFoods(newFoodArray);
-  }
+  };
 
-  function handleFilterChange(event) {
+  const handleFilterChange = (event) => {
     setFilterBy(event.target.value);
-  }
+  };
 
   // Filtered foods to display
-  const foodsToDisplay = foods.filter((food) => {
-    return filterBy === "All" ? true : food.cuisine === filterBy;
-  });
+  const filteredFoods = foods.filter((food) =>
+    filterBy === "All" ? true : food.cuisine === filterBy
+  );
 
   // Food list
-  const foodList = foodsToDisplay.map((food) => (
+  const foodList = filteredFoods.map((food) => (
     <li key={food.id} onClick={() => handleLiClick(food.id)}>
       {food.name} | Heat: {food.heatLevel} | Cuisine: {food.cuisine}
     </li>
@@ -54,4 +52,3 @@ function SpicyFoodList() {
 }
 
 export default SpicyFoodList;
-

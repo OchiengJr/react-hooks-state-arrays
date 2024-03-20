@@ -1,6 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  // Short name of the web app
+  "short_name": "My App",
+
+  // Full name of the web app
+  "name": "My Awesome React App",
+
+  // Array of icons for different sizes and formats
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +23,16 @@
       "sizes": "512x512"
     }
   ],
+
+  // URL that loads when the app is launched from the home screen
   "start_url": ".",
+
+  // How the app should be displayed: standalone, fullscreen, browser, etc.
   "display": "standalone",
+
+  // The color of the application's UI
   "theme_color": "#000000",
+
+  // The default background color of the application
   "background_color": "#ffffff"
 }

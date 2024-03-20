@@ -1,12 +1,12 @@
 # Created by https://www.gitignore.io/api/node
 
-.DS_Store
-
-### Node ###
+### Node.js ###
 # Logs
 logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Runtime data
 pids
@@ -20,17 +20,30 @@ lib-cov
 build/Release
 
 # Dependency directories
-node_modules
-jspm_packages
+node_modules/
+jspm_packages/
 
 # Optional npm cache directory
-.npm
+.npm/
 
 # Optional REPL history
 .node_repl_history
 
-# Learn-specific .results.json
-.results.json
+# Production build directory
+/dist
 
-# Ignore ESLint files
-.eslintcache
+# Environment variables file
+.env
+
+# Editor-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore ESLint cache
+.eslintcache/
